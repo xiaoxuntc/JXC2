@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
 
 /**
  * 用户实体
@@ -20,12 +21,14 @@ public class User {
 	@GeneratedValue
 	private Integer id; // 编号
 
+	@NotEmpty(message = "请输入用户名!")
 	@Column(length = 50)
 	private String userName; // 用户名
 
+	@NotEmpty(message = "请输入密码!")
 	@Column(length = 50)
 	private String password; // 密码
-
+	
 	@Column(length = 50)
 	private String trueName; // 真实姓名
 
