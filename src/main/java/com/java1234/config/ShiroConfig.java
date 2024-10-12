@@ -3,6 +3,7 @@ package com.java1234.config;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -65,6 +66,9 @@ public class ShiroConfig {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		// 设置realm.
 		securityManager.setRealm(myRealm());
+		
+		// 在注册bean的时候,加入下面这句话,将securityManager放到SecurityUtils里面
+		SecurityUtils.setSecurityManager(securityManager);
 		return securityManager;
 	}
 
